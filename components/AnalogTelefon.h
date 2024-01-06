@@ -1,11 +1,11 @@
-#include "analogTelefon.h"
+#include "AnalogTelefon.h"
 #include "esphome.h"
 
-void AnalogButtonsComponent::setup() {
+void AnalogTelefonComponent::setup() {
   // Setup code here
 }
 
-void AnalogButtonsComponent::loop() {
+void AnalogTelefonComponent::loop() {
   static unsigned long last_time = 0;
   if (millis() - last_time > 1000) { // Every 1 second
     last_time = millis();
