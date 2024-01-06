@@ -1,6 +1,9 @@
 #include "esphome.h"
 #include "esphome/components/AnalogTelefon/AnalogTelefon.h"
 
+namespace esphome {
+namespace analog_telefon_component {
+
 class AnalogTelefonComponent : public Component {
  public:
   void setup() override {
@@ -16,5 +19,5 @@ class AnalogTelefonComponent : public Component {
   }
 };
 
-// Registration macro
-ESPHOME_REGISTER_COMPONENT(AnalogTelefonComponent, AnalogTelefonComponent)
+}  // namespace esphome
+}  // namespace analog_telefon_component
