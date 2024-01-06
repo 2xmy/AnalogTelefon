@@ -38,7 +38,7 @@ class AnalogButtonsComponent : public Component {
     int keyState = digitalRead(keyPin);
   
     if (keyState == LOW) {
-      ESP_LOGD("custom", "%s", message);
+      ESP_LOGI("custom", "%s", message);
       delay(100); // Delay to prevent multiple triggers
     }
   }
