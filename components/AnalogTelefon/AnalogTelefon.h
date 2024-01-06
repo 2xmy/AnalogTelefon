@@ -1,4 +1,5 @@
 #include "esphome.h"
+#include "esphome/components/AnalogTelefon/AnalogTelefon.h"
 
 class AnalogTelefonComponent : public Component {
  public:
