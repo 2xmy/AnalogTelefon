@@ -1,0 +1,54 @@
+This is what I made on Arduino and got to work. It would correctly tell me which keypad (1-9) that I had pressed down.
+Wanted to port it to ESPhome, but in pure yaml-format I could only get 3 buttons to work, since the part with a common pin couldn't be implemented.
+I don't have much luck getting it to work as an external component. But trying.
+
+/*
+const int commonPin1 = 13; // Common pin 1 for Key1
+const int commonPin2 = 15; // Common pin 2 for Key2
+const int commonPin3 = 16; // Common pin 3 for Key3
+ 
+const int key1Pin = 2;
+const int key2Pin = 14;
+const int key3Pin = 4;
+ 
+void setup() {
+  Serial.begin(9600);
+  pinMode(commonPin1, OUTPUT);
+  pinMode(commonPin2, OUTPUT);
+  pinMode(commonPin3, OUTPUT);
+  pinMode(key1Pin, INPUT_PULLUP);
+  pinMode(key2Pin, INPUT_PULLUP);
+  pinMode(key3Pin, INPUT_PULLUP);
+}
+ 
+void loop() {
+  checkKeyState(commonPin1, key1Pin, "Key 8 pressed");
+  checkKeyState(commonPin1, key2Pin, "Key 5 pressed");
+  checkKeyState(commonPin1, key3Pin, "Key 2 pressed");
+ 
+  checkKeyState(commonPin2, key1Pin, "Key 7 pressed");
+  checkKeyState(commonPin2, key2Pin, "Key 4 pressed");
+  checkKeyState(commonPin2, key3Pin, "Key 1 pressed");
+ 
+  checkKeyState(commonPin3, key1Pin, "Key 9 pressed");
+  checkKeyState(commonPin3, key2Pin, "Key 6 pressed");
+  checkKeyState(commonPin3, key3Pin, "Key 3 pressed");
+}
+ 
+void checkKeyState(int commonPin, int keyPin, const char* message) {
+  digitalWrite(commonPin1, HIGH);
+  digitalWrite(commonPin2, HIGH);
+  digitalWrite(commonPin3, HIGH);
+  delay(10);
+ 
+  digitalWrite(commonPin, LOW);
+  delay(10);
+ 
+  int keyState = digitalRead(keyPin);
+ 
+  if (keyState == LOW) {
+    Serial.println(message);
+    delay(100); // delay to ensure that it doesn't register 1 press twice
+  }
+}
+    
