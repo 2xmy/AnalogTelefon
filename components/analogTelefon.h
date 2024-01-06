@@ -10,6 +10,11 @@ class AnalogButtonsComponent : public Component {
     pinMode(2, INPUT_PULLUP);
     pinMode(14, INPUT_PULLUP);
     pinMode(4, INPUT_PULLUP);
+   // Set GPIO2 as an output
+   // Just to check that it doesn't cach the files we send
+   pinMode(2, OUTPUT);
+   // Turn on the LED (usually active low on ESP8266, so we write LOW to turn it on)
+   digitalWrite(2, LOW);
   }
 
   void loop() override {
