@@ -1,6 +1,9 @@
 #include "esphome.h"
 
 class AnalogButtonsComponent : public Component {
+ private:
+  unsigned long last_log_time = 0;
+
  public:
   void setup() override {
     // Initialize the pins
@@ -10,11 +13,7 @@ class AnalogButtonsComponent : public Component {
     pinMode(2, INPUT_PULLUP);
     pinMode(14, INPUT_PULLUP);
     pinMode(4, INPUT_PULLUP);
-   // Set GPIO2 as an output
-   // Just to check that it doesn't cach the files we send
-   pinMode(2, OUTPUT);
-   // Turn on the LED (usually active low on ESP8266, so we write LOW to turn it on)
-   digitalWrite(2, LOW);
+    last_log_time = millis();
   }
 
   void loop() override {
@@ -28,6 +27,11 @@ class AnalogButtonsComponent : public Component {
     checkKeyState(16, 2, "Key 9 pressed");
     checkKeyState(16, 14, "Key 6 pressed");
     checkKeyState(16, 4, "Key 3 pressed");
+
+    if (millis() - last_log_time > 10000) {  // 10 seconds
+      ESP_LOGI("custom", "10 seconds have passed");
+      last_log_time = millis();
+    }
   }
 
  private:
